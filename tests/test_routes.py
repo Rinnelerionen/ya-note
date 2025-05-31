@@ -21,7 +21,7 @@ class TestRoutes(TestCase):
 
     def test_pages_availability(self):
         """
-        Главная, страницы входа, выхода, регистрации доступны 
+        Главная, страницы входа, выхода, регистрации доступны
         неавторизованным пользователям.
         """
         urls = (
@@ -40,8 +40,8 @@ class TestRoutes(TestCase):
                 self.assertEqual(response.status_code, HTTPStatus.OK)
 
     def test_availability_for_detail_edit_and_delete(self):
-        """
-        Страница редактирования и удаления заметки доступна только автору.
+        """Страница редактирования и
+        удаления заметки доступна только автору.
         """
         users_statuses = (
             (self.author, HTTPStatus.OK),

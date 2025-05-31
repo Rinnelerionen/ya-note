@@ -10,6 +10,7 @@ from notes.models import Note
 
 User = get_user_model()
 
+
 class TestCreateNote(TestCase):
 
     @classmethod
@@ -97,6 +98,7 @@ class TestEditDelete(TestCase):
         self.assertEqual(self.note.title, 'Заголовок')
         self.assertEqual(self.note.text, 'Текст')
         self.assertEqual(self.note.slug, 'slug')
+
 
 class TestSlugNote(TestCase):
 
