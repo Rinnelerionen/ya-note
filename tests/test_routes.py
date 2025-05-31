@@ -20,6 +20,10 @@ class TestRoutes(TestCase):
         )
 
     def test_pages_availability(self):
+        """
+        Главная, страницы входа, выхода, регистрации доступны 
+        неавторизованным пользователям.
+        """
         urls = (
             'notes:home',
             'users:login',
@@ -36,6 +40,9 @@ class TestRoutes(TestCase):
                 self.assertEqual(response.status_code, HTTPStatus.OK)
 
     def test_availability_for_detail_edit_and_delete(self):
+        """
+        Страница редактирования и удаления заметки доступна только автору.
+        """
         users_statuses = (
             (self.author, HTTPStatus.OK),
             (self.reader, HTTPStatus.NOT_FOUND),
@@ -49,6 +56,10 @@ class TestRoutes(TestCase):
                     self.assertEqual(response.status_code, status)
 
     def test_authorised_pages(self):
+        """
+        Авторизованные пользователи могут просматривать страницы со списком
+        заметок, добавлять новые.
+        """
         urls = (
             'notes:list',
             'notes:success',
@@ -62,6 +73,10 @@ class TestRoutes(TestCase):
                 self.assertEqual(response.status_code, HTTPStatus.OK)
 
     def test_redirect_for_anonymous_client(self):
+        """
+        Неавторизованные пользователи перенаправляются на страницу входа
+        для просмотра приватных страниц.
+        """
         login_url = reverse('users:login')
         forbiden_urls = (
             ('notes:list', None),
